@@ -50,11 +50,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\Knihovna\\KnihovnaZoldak\\KnihovnaZoldak\\KnihovnaZoldak.csproj",
+      "projectUniqueName": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\ProjektKnihovna\\KnihovnaZoldak\\KnihovnaZoldak\\KnihovnaZoldak.csproj",
       "projectName": "KnihovnaZoldak",
-      "projectPath": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\Knihovna\\KnihovnaZoldak\\KnihovnaZoldak\\KnihovnaZoldak.csproj",
+      "projectPath": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\ProjektKnihovna\\KnihovnaZoldak\\KnihovnaZoldak\\KnihovnaZoldak.csproj",
       "packagesPath": "C:\\Users\\Marti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\Knihovna\\KnihovnaZoldak\\KnihovnaZoldak\\obj\\",
+      "outputPath": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\ProjektKnihovna\\KnihovnaZoldak\\KnihovnaZoldak\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
