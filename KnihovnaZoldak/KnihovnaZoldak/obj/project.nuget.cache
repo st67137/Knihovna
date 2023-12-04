@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "zgQEX7nQ96y1z3pFFa279boB7VK9pNFDElAcn5VT3usEZJSjjpa1i370EbBJYSfRYpiLqjJCKxAtz1wHEFp5vw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Marti\\OneDrive\\Plocha\\skola\\3_Tretak\\Knihovna\\KnihovnaZoldak\\KnihovnaZoldak\\KnihovnaZoldak.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Marti\\.nuget\\packages\\litedb\\5.0.17\\litedb.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}

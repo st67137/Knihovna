@@ -1,0 +1,15 @@
+﻿<Window x:Class="KnihovnaZoldak.ZakazniciWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Zákazníci" Height="220" Width="360" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Jméno" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,20,0,0"/>
+        <TextBox Name="textBoxJmeno" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="140,25,0,0" Text="{Binding JmenoZakaznika}"/>
+        <Label Content="Příjmení" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,60,0,0"/>
+        <TextBox Name="textBoxPrijmeni" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="140,65,0,0" Text="{Binding PrijmeniZakaznika}"/>
+        <Label Content="Telefon" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,100,0,0"/>
+        <TextBox Name="textBoxTelefon" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Margin="140,105,0,0" Text="{Binding TelefonZakaznika}"/>
+        <Button Content="OK" Name="buttonOk" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="20" Margin="140,140,0,0" Command="{Binding OkCommand}"/>
+        <Button Content="Cancel" Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="20" Margin="240,140,0,0" Command="{Binding CancelCommand}"/>
+    </Grid>
+</Window>

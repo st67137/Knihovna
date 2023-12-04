@@ -1,0 +1,15 @@
+﻿<Window x:Class="KnihovnaZoldak.VypujckyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Výpůjčky" Height="230" Width="390" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Knihovna" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,30,0,0"/>
+        <ComboBox Name="comboBoxKnihovna" HorizontalAlignment="Left" VerticalAlignment="Top" Width="211" Margin="140,30,0,0" SelectedItem="{Binding VybranaKnihovna}" ItemsSource="{Binding KnihovnyItems}"/>
+        <Label Content="Kniha" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,70,0,0"/>
+        <ComboBox Name="comboBoxKniha" HorizontalAlignment="Left" VerticalAlignment="Top" Width="211" Margin="140,70,0,0" SelectedItem="{Binding VybranaKniha}" ItemsSource="{Binding KnihyItems}"/>
+        <Label Content="Zákazník" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,110,0,0"/>
+        <ComboBox Name="comboBoxZakaznik" HorizontalAlignment="Left" VerticalAlignment="Top" Width="211" Margin="140,110,0,0" SelectedItem="{Binding VybranyZakaznik}" ItemsSource="{Binding ZakazniciItems}"/>
+        <Button Content="OK" Name="buttonOk" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="20" Margin="140,150,0,0" Command="{Binding OkCommand}"/>
+        <Button Content="Cancel" Name="buttonCancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="20" Margin="266,150,0,0" Command="{Binding CancelCommand}"/>
+    </Grid>
+</Window>

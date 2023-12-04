@@ -1,0 +1,41 @@
+﻿<Window x:Class="KnihovnaZoldak.PujcovnaKnihWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PujcovnaKnih" MinHeight="520" Height="520" MinWidth="1150" Width="1150">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*" />
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="0.2*" />
+        </Grid.ColumnDefinitions>
+        
+
+        <StackPanel Grid.Column="0" Margin="20,20,20,0">
+            <Button Content="KNIHOVNY" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonKnihovnyCommand}"/>
+            <Button Content="KNIHY" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonKnihyCommand}"/>
+            <Button Content="ZÁKAZNÍCI" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonZakazniciCommand}"/>
+            <Button Content="VÝPŮJČKY" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonVypujckyCommand}"/>
+            <Button Content="KONEC" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,60,0,0" Command="{Binding ButtonKonecCommand}"/>
+
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label Content="{Binding LabelNadpis}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Margin="20,20,20,0">
+            <Button Content="NOVÝ" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonPridejCommand}"/>
+            <Button x:Name="buttonUprav" Content="UPRAV" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonUpravCommand}" IsEnabled="{Binding ButtonUpravIsEnabled}"/>
+            <Button Content="SMAZAT" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="40" Margin="0,20,0,0" Command="{Binding ButtonOdeberCommand}"/>
+            <Label x:Name="labelKnihovna" Visibility="{Binding FiltrovaniVisibility}" Content="Knihovna" FontSize="16" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0"/>
+            <ComboBox x:Name="comboBoxKnihovny" Visibility="{Binding FiltrovaniVisibility}" SelectedItem="{Binding VybranaKnihovna}" ItemsSource="{Binding ComboBoxKnihovnyItems}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="28"/>
+            <Label x:Name="labelKniha" Visibility="{Binding FiltrovaniVisibility}" Content="Kniha" FontSize="16" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" />
+            <ComboBox x:Name="comboBoxKnihy" Visibility="{Binding FiltrovaniVisibility}" SelectedItem="{Binding VybranaKniha}" ItemsSource="{Binding ComboBoxKnihyItems}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="28" />
+            <Label x:Name="labelZakaznik" Visibility="{Binding FiltrovaniVisibility}" Content="Zakaznik" FontSize="16" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" />
+            <ComboBox x:Name="comboBoxZakaznici" Visibility="{Binding FiltrovaniVisibility}" SelectedItem="{Binding VybranyZakaznik}" ItemsSource="{Binding ComboBoxZakazniciItems}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="28" />
+            <Button x:Name="buttonFiltr" Visibility="{Binding FiltrovaniVisibility}" Content="FILTRUJ" FontSize="16" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="auto" Height="36" Margin="0,20,0,0" Command="{Binding ButtonFiltrujCommand}"/>
+        </StackPanel>
+
+        <ListBox ItemsSource="{Binding ListBoxInformaceItems}" SelectedItem="{Binding SelectedListBoxItem, Mode=TwoWay}" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="listBoxInformace" FontFamily="Consolas" FontSize="14" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,30">
+
+        </ListBox>
+    </Grid>
+</Window>
