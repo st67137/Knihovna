@@ -170,6 +170,7 @@ namespace KnihovnaZoldak.ViewModel
                     pridejVypujcku();
                     break;
             }
+            Refresh(moznost);
         }
 
         private void ButtonSmazat_Click(MoznostiEnum moznost)
@@ -257,6 +258,7 @@ namespace KnihovnaZoldak.ViewModel
                     }
                     break;
             }
+            Refresh(moznost);
         }
         private void pridejPobocku()
         {
@@ -268,7 +270,6 @@ namespace KnihovnaZoldak.ViewModel
             if (pobockaVM.PridejPobockuUspesne)
             {
                 poleKnihoven.Pridej(pobockaVM.Pobocka);
-                Refresh(moznost);
             }
         }
         private void pridejKnihu()
@@ -281,7 +282,6 @@ namespace KnihovnaZoldak.ViewModel
             if (knihaVM.PridaniKnihy)
             {
                 poleKnih.Pridej(knihaVM.Kniha);
-                Refresh(moznost);
             }
         }
         private void pridejZakaznika()
@@ -294,39 +294,40 @@ namespace KnihovnaZoldak.ViewModel
             if (zakazniciVM.PridaniZakaznika)
             {
                 poleZakazniku.Pridej(zakazniciVM.Zakaznik);
-                Refresh(moznost);
             }
         }
         private void pridejVypujcku()
         {
-            VypujckyViewModel vypujckyVM = new VypujckyViewModel(poleKnihoven,poleKnih,poleZakazniku);
-            VypujckyWindow vypujcky = new VypujckyWindow(poleKnihoven,poleKnih,poleZakazniku) { DataContext = vypujckyVM };
+            VypujckyViewModel vypujckyVM = new VypujckyViewModel(poleKnihoven, poleKnih, poleZakazniku);
+            VypujckyWindow vypujcky = new VypujckyWindow(poleKnihoven, poleKnih, poleZakazniku) { DataContext = vypujckyVM };
             bool? dialogResultVypujcka = vypujcky.ShowDialog();
             if (vypujckyVM.PridaniVypujcky)
             {
                 poleVypujcek.Pridej(vypujckyVM.VypujcenaKniha);
                 poleZakazniku.Uprav(vypujckyVM.zakaznik);
                 poleKnih.Uprav(vypujckyVM.kniha);
-                Refresh(moznost);
             }
         }
         private void upravPobocku(int idPobocky)
         {
-            var pobockaToUpdate = poleKnihoven.GetAll().FirstOrDefault(p => p.Id == idPobocky);
+            var upravenaPobocka = poleKnihoven.GetAll().FirstOrDefault(p => p.Id == idPobocky);
 
-            if (pobockaToUpdate != null)
+            if (upravenaPobocka != null)
             {
-                PobockyViewModel upravPobockuVM = new PobockyViewModel(pobockaToUpdate);
+                PobockyViewModel upravPobockuVM = new PobockyViewModel(upravenaPobocka);
                 PobockyWindow updatePobocky = new PobockyWindow { DataContext = upravPobockuVM };
                 bool? dialogResultPobocka = updatePobocky.ShowDialog();
 
                 if (upravPobockuVM.PridejPobockuUspesne)
                 {
-                    Knihovna novaPobocka = upravPobockuVM.Pobocka;
-                    novaPobocka.Id = idPobocky;
-
-                    poleKnihoven.Uprav(novaPobocka);
-                    Refresh(moznost);
+                    upravenaPobocka = upravPobockuVM.Pobocka;
+                    upravenaPobocka.Id = idPobocky;
+                    foreach (var vypujcka in poleVypujcek.GetAll().Where(p => p.VybranaKnihovna.Id == upravenaPobocka.Id))
+                    {
+                        vypujcka.VybranaKnihovna.Nazev = upravPobockuVM.NazevPobocky;
+                        poleVypujcek.Uprav(vypujcka);
+                    }
+                    poleKnihoven.Uprav(upravenaPobocka);
                 }
             }
         }
@@ -342,11 +343,14 @@ namespace KnihovnaZoldak.ViewModel
 
                 if (upravKnihuVM.PridaniKnihy)
                 {
-                    Kniha novaKniha = upravKnihuVM.Kniha;
-                    novaKniha.Id = idKnihy;
-
-                    poleKnih.Uprav(novaKniha);
-                    Refresh(moznost);
+                    upravenaKniha = upravKnihuVM.Kniha;
+                    upravenaKniha.Id = idKnihy;
+                    foreach (var vypujcka in poleVypujcek.GetAll().Where(p => p.VybranaKniha.Id == upravenaKniha.Id))
+                    {
+                        vypujcka.VybranaKniha.Nazev = upravKnihuVM.NazevKnihy;
+                        poleVypujcek.Uprav(vypujcka);
+                    }
+                    poleKnih.Uprav(upravenaKniha);
                 }
             }
         }
@@ -362,11 +366,14 @@ namespace KnihovnaZoldak.ViewModel
 
                 if (upravZakaznikaVM.PridaniZakaznika)
                 {
-                    Zakaznik novyZakaznik = upravZakaznikaVM.Zakaznik;
-                    novyZakaznik.Id = idZakaznika;
-
-                    poleZakazniku.Uprav(novyZakaznik);
-                    Refresh(moznost);
+                    upravenyZakaznik = upravZakaznikaVM.Zakaznik;
+                    upravenyZakaznik.Id = idZakaznika;
+                    foreach (var vypujcka in poleVypujcek.GetAll().Where(p => p.VybranyZakaznik.Id == upravenyZakaznik.Id))
+                    {
+                        vypujcka.VybranyZakaznik.Prijmeni = upravZakaznikaVM.PrijmeniZakaznika;
+                        poleVypujcek.Uprav(vypujcka);
+                    }
+                    poleZakazniku.Uprav(upravenyZakaznik);
                 }
             }
         }
@@ -444,7 +451,7 @@ namespace KnihovnaZoldak.ViewModel
             ComboBoxKnihovnyItems.Add(nevybrana);
             ComboBoxKnihyItems.Add(nevybrana);
             ComboBoxZakazniciItems.Add(nevybrana);
-            foreach(var knihovna in poleKnihoven.GetAll())
+            foreach (var knihovna in poleKnihoven.GetAll())
             {
                 ComboBoxKnihovnyItems.Add(knihovna.Nazev);
             }

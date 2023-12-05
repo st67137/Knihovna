@@ -84,7 +84,7 @@ namespace KnihovnaZoldak.ViewModel
             get { return vypujcenaKniha; }
             set { SetProperty(ref vypujcenaKniha, value); }
         }
-        public VypujckyViewModel(Zaznamy<Knihovna> poleKnihoven,Zaznamy<Kniha> poleKnih, Zaznamy<Zakaznik> poleZakazniku)
+        public VypujckyViewModel(Zaznamy<Knihovna> poleKnihoven, Zaznamy<Kniha> poleKnih, Zaznamy<Zakaznik> poleZakazniku)
         {
             this.poleKnihoven = poleKnihoven;
             this.poleZakazniku = poleZakazniku;
@@ -100,7 +100,7 @@ namespace KnihovnaZoldak.ViewModel
             {
                 KnihyItems.Add(kniha.Nazev + " (" + kniha.PocetKnih + ")");
             }
-            
+
             ZakazniciItems = new ObservableCollection<string>(poleZakazniku.GetAll().Select(p => p.Prijmeni));
             vybranaKnihovna = KnihovnyItems.FirstOrDefault();
             vybranaKniha = KnihyItems.FirstOrDefault();

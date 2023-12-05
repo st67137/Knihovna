@@ -92,7 +92,7 @@ namespace KnihovnaZoldak {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/KnihovnaZoldak;V1.0.0.0;component/views/vypujckywindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/KnihovnaZoldak;component/views/vypujckywindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\VypujckyWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

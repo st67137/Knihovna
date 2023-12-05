@@ -27,12 +27,13 @@ namespace KnihovnaZoldak.ViewModel
                     mapper.Entity<Vypujcka>().Id(h => h.Id);
 
                     database = new LiteDatabase(databasePath);
+
+                    return database;
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show("Chyba při vytváření databáze: " + e.Message);
                 }
-                return database;
             }
             return database;
         }

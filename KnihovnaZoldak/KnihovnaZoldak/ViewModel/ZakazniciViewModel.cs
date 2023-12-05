@@ -12,6 +12,7 @@ namespace KnihovnaZoldak.ViewModel
         private string jmeno;
         private string prijmeni;
         private string telefon;
+        private int pocetVypujcek;
         public ICommand OkCommand { get; private set; }
         public ICommand CancelCommand { get; private set; }
 
@@ -24,6 +25,7 @@ namespace KnihovnaZoldak.ViewModel
             JmenoZakaznika = zakaznik.Jmeno;
             PrijmeniZakaznika = zakaznik.Prijmeni;
             TelefonZakaznika = zakaznik.Telefon;
+            pocetVypujcek = zakaznik.PocetVypujcek;
             Zakaznik = zakaznik;
             InitializeCommands();
         }
@@ -77,6 +79,7 @@ namespace KnihovnaZoldak.ViewModel
                     if (jeCislo)
                     {
                         Zakaznik = new Zakaznik(JmenoZakaznika, PrijmeniZakaznika, TelefonZakaznika);
+                        Zakaznik.PocetVypujcek = pocetVypujcek;
                         DialogResult = true;
                         PridaniZakaznika = true;
                         var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
